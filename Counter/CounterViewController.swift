@@ -1,21 +1,15 @@
-//
-//  ViewController.swift
-//  Counter
-//
-//  Created by Валя Шемякина on 25.04.2026.
-//
 
 import UIKit
 
-class ViewController: UIViewController {
+final class CounterViewController: UIViewController {
 
-    @IBOutlet weak var historyTextView: UITextView!
-    @IBOutlet weak var clearHistoryButton: UIButton!
-    @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var subtractButton: UIButton!
-    @IBOutlet weak var counterLabel: UILabel!
-    var count: Int = 0
-    func formatingDate(_ date: Date, format: String = "dd.MM.yy HH:mm") -> String {
+    @IBOutlet private weak var historyTextView: UITextView!
+    @IBOutlet private weak var clearHistoryButton: UIButton!
+    @IBOutlet private weak var addButton: UIButton!
+    @IBOutlet private weak var subtractButton: UIButton!
+    @IBOutlet private weak var counterLabel: UILabel!
+    private var count: Int = 0
+    private func formatingDate(_ date: Date, format: String = "dd.MM.yy HH:mm") -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = format
         formatter.locale = Locale(identifier: "ru_Ru")
@@ -24,18 +18,16 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
     }
 
-    @IBAction func Adding(_ sender: Any) {
+    @IBAction private func Adding(_ sender: Any) {
         count += 1
         counterLabel.text = "Значение счетчика: \(count)"
         historyTextView.text.append ("\n\(formatingDate(Date())): значение изменено на +1")
         
     }
     
-    @IBAction func Subtracting(_ sender: Any) {
+    @IBAction private func Subtracting(_ sender: Any) {
         if count > 0 && count != 0 {
             count -= 1
             counterLabel.text = "Значение счетчика: \(count)"
@@ -45,7 +37,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func ClearHistory(_ sender: Any) {
+    @IBAction private func ClearHistory(_ sender: Any) {
         count = 0
         counterLabel.text = "Значение счетчика: \(count)"
         historyTextView.text.append ("\n\(formatingDate(Date())): значение сброшено")
